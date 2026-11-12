@@ -3,7 +3,7 @@ let races = [];
 
 async function loadRaces() {
   try {
-    const response = await fetch("data/races.json");
+    const response = await fetch("races.json");
 
     if (!response.ok) {
       throw new Error("大会データを読み込めませんでした");
