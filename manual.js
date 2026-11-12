@@ -4,7 +4,7 @@ let selectedManualCategory = "すべて";
 
 async function loadManuals() {
   try {
-    const response = await fetch("data/manual.json");
+    const response = await fetch("manual.json");
     if (!response.ok) throw new Error("マニュアル読み込み失敗");
 
     manuals = await response.json();
