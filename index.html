@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d17">
+  <meta name="description" content="REVEIO Cycling Portal - 全国のロードレース情報とサイクリングマニュアル">
+  <title>REVEIO | Cycling Portal</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  >
+</head>
+
+<body>
+
+<header class="header">
+  <a href="#home" class="logo">
+    <span class="logo-mark">R</span>
+    <span>REVEIO</span>
+  </a>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="メニュー">
+    ☰
+  </button>
+
+  <nav class="nav" id="navigation">
+    <a href="#home" class="nav-link active">HOME</a>
+    <a href="#races" class="nav-link">RACES</a>
+    <a href="#map" class="nav-link">MAP</a>
+    <a href="#manual" class="nav-link">MANUAL</a>
+    <a href="#news" class="nav-link">NEWS</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HOME -->
+  <section id="home" class="page active">
+
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">CYCLING INFORMATION PORTAL</p>
+
+        <h1>
+          RIDE BEYOND.<br>
+          <span>FIND YOUR NEXT RACE.</span>
+        </h1>
+
+        <p class="hero-description">
+          全国のロードレース情報を探す。<br>
+          新しい挑戦を、ここから。
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#races" class="button primary">大会を探す</a>
+          <a href="#manual" class="button secondary">初心者マニュアル</a>
+        </div>
+      </div>
+
+      <div class="hero-decoration">
+        <div class="hero-circle"></div>
+        <div class="hero-number">01</div>
+        <div class="hero-caption">ROAD CYCLING</div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">EXPLORE</p>
+          <h2>PORTAL OVERVIEW</h2>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">REGISTERED RACES</span>
+          <strong id="raceCount">--</strong>
+          <span class="stat-note">登録大会数</span>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-label">NEWS</span>
+          <strong id="newsCount">--</strong>
+          <span class="stat-note">お知らせ</span>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-label">MANUAL</span>
+          <strong id="manualCount">--</strong>
+          <span class="stat-note">マニュアル記事</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">UPCOMING</p>
+          <h2>UPCOMING RACES</h2>
+        </div>
+        <a href="#races" class="text-link">すべて見る →</a>
+      </div>
+
+      <div id="homeRaces" class="race-grid"></div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">LATEST INFORMATION</p>
+          <h2>NEWS</h2>
+        </div>
+        <a href="#news" class="text-link">すべて見る →</a>
+      </div>
+
+      <div id="homeNews" class="news-list"></div>
+    </section>
+
+  </section>
+
+
+  <!-- RACES -->
+  <section id="races" class="page">
+
+    <div class="page-heading">
+      <p class="eyebrow">RACE DATABASE</p>
+      <h1>RACE INFORMATION</h1>
+      <p>全国のロードレース・自転車大会を検索できます。</p>
+    </div>
+
+    <div class="filter-panel">
+      <input
+        type="search"
+        id="raceSearch"
+        placeholder="大会名・開催地で検索..."
+      >
+
+      <select id="prefectureFilter">
+        <option value="">すべての都道府県</option>
+      </select>
+
+      <select id="categoryFilter">
+        <option value="">すべての競技種目</option>
+      </select>
+
+      <select id="yearFilter">
+        <option value="">すべての年</option>
+      </select>
+
+      <button class="button primary" id="resetFilters">
+        リセット
+      </button>
+    </div>
+
+    <div class="results-heading">
+      <span>SEARCH RESULTS</span>
+      <strong id="resultCount">0件</strong>
+    </div>
+
+    <div id="raceList" class="race-grid"></div>
+
+  </section>
+
+
+  <!-- MAP -->
+  <section id="map" class="page">
+
+    <div class="page-heading">
+      <p class="eyebrow">RACE LOCATION SEARCH</p>
+      <h1>RACE MAP</h1>
+      <p>地図から全国の大会開催地を探せます。</p>
+    </div>
+
+    <div class="map-search-panel">
+      <input
+        type="search"
+        id="locationSearch"
+        placeholder="例：札幌市、東京都、新宿駅..."
+      >
+
+      <button class="button primary" id="searchLocation">
+        場所を検索
+      </button>
+    </div>
+
+    <div class="radius-panel">
+      <label for="radiusSelect">検索範囲</label>
+      <select id="radiusSelect">
+        <option value="25">25 km</option>
+        <option value="50" >50 km</option>
+        <option value="100">100 km</option>
+        <option value="200">200 km</option>
+        <option value="500">500 km</option>
+        <option value="1000"selected>1000 km</option>
+      </select>
+
+      <span id="mapStatus">地図を読み込み中...</span>
+    </div>
+
+    <div id="mapContainer"></div>
+
+    <div class="section-heading map-results-heading">
+      <div>
+        <p class="eyebrow">NEARBY EVENTS</p>
+        <h2>NEARBY RACES</h2>
+      </div>
+    </div>
+
+    <div id="nearbyRaces" class="race-grid"></div>
+
+  </section>
+
+
+  <!-- MANUAL -->
+  <section id="manual" class="page">
+
+    <div class="page-heading">
+      <p class="eyebrow">CYCLING GUIDE</p>
+      <h1>CYCLING MANUAL</h1>
+      <p>ロードバイク初心者からレース参加者まで役立つ情報。</p>
+    </div>
+
+    <div class="manual-layout">
+      <aside class="manual-sidebar">
+        <h3>CATEGORIES</h3>
+        <div id="manualCategories"></div>
+      </aside>
+
+      <div id="manualList" class="manual-list"></div>
+    </div>
+
+  </section>
+
+
+  <!-- NEWS -->
+  <section id="news" class="page">
+
+    <div class="page-heading">
+      <p class="eyebrow">LATEST UPDATES</p>
+      <h1>NEWS & INFORMATION</h1>
+      <p>最新のお知らせや大会関連情報。</p>
+    </div>
+
+    <div id="newsList" class="news-list"></div>
+
+  </section>
+
+</main>
+
+
+<footer class="footer">
+  <div class="footer-logo">REVEIO</div>
+  <p>CYCLING INFORMATION PORTAL</p>
+  <p class="footer-copy">
+    © 2026 REVEIO Portal. All rights reserved.
+  </p>
+  <p class="footer-note">
+    本サイトは大会情報を掲載するポータルのテンプレートです。
+    掲載情報の正確性は各大会の公式発表をご確認ください。
+  </p>
+</footer>
+
+
+<div id="toast" class="toast"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/races.js"></script>
+<script src="js/map.js"></script>
+<script src="js/manual.js"></script>
+<script src="js/news.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

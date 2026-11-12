@@ -1,0 +1,135 @@
+
+@media (max-width: 900px) {
+  .race-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-decoration {
+    opacity: .35;
+    right: -60px;
+  }
+
+  .manual-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .manual-sidebar {
+    display: block;
+  }
+}
+
+@media (max-width: 650px) {
+  .header {
+    height: 65px;
+    padding: 0 5%;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    flex-direction: column;
+    gap: 20px;
+    background: #0c1422;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .hero {
+    min-height: 450px;
+    padding: 65px 6%;
+  }
+
+  .hero-decoration {
+    width: 200px;
+    height: 200px;
+    right: -80px;
+  }
+
+  .hero-number {
+    font-size: 70px;
+    left: 65px;
+    top: 35px;
+  }
+
+  .hero-caption {
+    left: 35px;
+    bottom: 35px;
+    font-size: 9px;
+  }
+
+  .content-section {
+    padding: 40px 5%;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .race-grid {
+    grid-template-columns: 1fr;
+    padding: 0 5% 35px;
+  }
+
+  .filter-panel,
+  .map-search-panel {
+    margin: 20px 5%;
+    flex-direction: column;
+  }
+
+  .filter-panel input,
+  .filter-panel select,
+  .map-search-panel input,
+  .map-search-panel button {
+    width: 100%;
+  }
+
+  .results-heading {
+    margin: 20px 5%;
+  }
+
+  #mapContainer {
+    height: 380px;
+    margin: 0 5%;
+  }
+
+  .radius-panel {
+    margin: 0 5% 15px;
+  }
+
+  .page-heading {
+    padding: 45px 5% 30px;
+  }
+
+  .news-list {
+    padding: 0 5% 35px;
+  }
+
+  .news-item {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .manual-layout {
+    padding: 25px 5%;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-buttons .button {
+    min-width: 190px;
+  }
+}
