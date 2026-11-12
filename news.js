@@ -3,7 +3,7 @@ let newsItems = [];
 
 async function loadNews() {
   try {
-    const response = await fetch("data/news.json");
+    const response = await fetch("news.json");
     if (!response.ok) throw new Error("ニュース読み込み失敗");
 
     newsItems = await response.json();
